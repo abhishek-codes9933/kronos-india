@@ -48,7 +48,20 @@ Refreshing this browser page does not stop the server. Closing a normally launch
 - Actual local Kronos inference tested with the cached model and saved Nifty history.
 - Actual Dhan quote and candle requests verified through the user's connection for Nifty, Bank Nifty and Sensex. Other individual instruments have not all been tested.
 - Test command: `C:\Users\abhis\Documents\Kronos\.venv\Scripts\python.exe -m unittest discover -s . -p "test_*.py"`
+## Credits
 
+This app uses Kronos by ShiYu and contributors:
+https://github.com/shiyu-coder/Kronos
+
+The original Kronos project is MIT-licensed.
+This repository contains a custom Indian-market interface and integration.
+
+## Installation status
+
+This version currently depends on the developer's local Windows
+Python environment and separately downloaded model files.
+Uploading or cloning this repository alone is not enough to run it.
+Portable installation instructions are still being prepared.
 ## Files and dependencies
 
 `server.py` handles the local application and Dhan data; `engine.py` runs Kronos; `core.py` contains candle/session rules; `catalogue.py` refreshes the public instrument list. Static interface files are in `static/`. Public instrument data is in `data/`. Forecast and candle CSVs are downloaded through your browser.
