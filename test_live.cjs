@@ -1,0 +1,18 @@
+const {readFileSync}=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const source=readFileSync(__dirname+'/static/app.js','utf8');
+const start=source.indexOf('function appendLivePoint(');
+assert.ok(start>=0,'live sample accumulator exists');
+const end=source.indexOf('\nfunction ',start+1);
+const context=vm.createContext({});
+vm.runInContext(source.slice(start,end),context);
+const add=context.appendLivePoint;
+let rows=[];
+add(rows,100,1000); add(rows,101,1000); add(rows,99,999);
+assert.equal(rows.length,1,'duplicate and out-of-order receipts ignored');
+add(rows,NaN,2000); add(rows,0,2000);
+assert.equal(rows.length,1,'invalid prices ignored');
+add(rows,102,2000); assert.equal(rows.length,2);
+add(rows,103,3602001); assert.equal(rows.length,1,'one hour retention');
+console.log('Live chart accumulator tests passed');
