@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.log
+data/
+exports/
+*.pt
+*.pth
+*.safetensors
+*.ckpt
